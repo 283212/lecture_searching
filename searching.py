@@ -79,21 +79,35 @@ def binary_search(prohledavany_seznam, hledane_cislo):
             continue
 
 
+def pattern_search(prohledavana_sekvence, hledany_vzor):
 
+    m = len(hledany_vzor)
+    indexy_vzor = []
 
+    for i in range(m):
+        indexy_vzor.append(i)
+
+    for hodnota, index in zip(prohledavana_sekvence, indexy_vzor):
+        if hodnota[index] == hledany_vzor[index]:
+
+        else:
+            prohledavana_sekvence = prohledavana_sekvence[1:]
 
 
 
 
 def main():
 
-    sequential_data = read_data("sequential.json", "ordered_numbers")
+    sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
 
     # slovnik = linear_search(sequential_data, 2)
     # print(slovnik)
 
-    vysledek = binary_search(sequential_data, 2)
+    #vysledek = binary_search(sequential_data, 2)
+    #print(vysledek)
+
+    vysledek = pattern_search(sequential_data, "ATA")
     print(vysledek)
 
 if __name__ == "__main__":
