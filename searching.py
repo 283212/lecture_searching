@@ -57,16 +57,19 @@ def binary_search(prohledavany_seznam, hledane_cislo):
 
     index_pul = 0
 
+    if not hledane_cislo in prohledavany_seznam:
+        return None
+
     while True:
 
-        index_middle = int((len(prohledavany_seznam) / 2) -1)
+        index_middle = int((len(prohledavany_seznam) / 2) - 1)
         middle = prohledavany_seznam[index_middle]
 
         if hledane_cislo == middle:
             return index_middle
 
         if hledane_cislo > middle:
-            prohledavany_seznam = prohledavany_seznam[index_middle:]
+            prohledavany_seznam = prohledavany_seznam[index_middle + 1:]
             index_pul += index_middle + 1
             continue
 
@@ -75,7 +78,7 @@ def binary_search(prohledavany_seznam, hledane_cislo):
 
             continue
 
-    return None
+
 
 
 
@@ -84,12 +87,14 @@ def binary_search(prohledavany_seznam, hledane_cislo):
 
 def main():
 
-    sequential_data = read_data("sequential.json", "unordered_numbers")
+    sequential_data = read_data("sequential.json", "ordered_numbers")
     print(sequential_data)
-    slovnik = linear_search(sequential_data, 2)
-    print(slovnik)
 
+    # slovnik = linear_search(sequential_data, 2)
+    # print(slovnik)
 
+    vysledek = binary_search(sequential_data, 2)
+    print(vysledek)
 
 if __name__ == "__main__":
     main()
