@@ -36,17 +36,46 @@ def read_data(file_name, field):
 def linear_search(prohledavana_sekvence, hledane_cislo):
 
     slovnik = {}
-    slovnik["count"] = 0
+    seznam_indexu = []
+    pocet = 0
 
 
     for index, hodnota in enumerate(prohledavana_sekvence):
         if hodnota == hledane_cislo:
-            slovnik["positions"].append(index)
-            slovnik["count"] += 1
+            seznam_indexu.append(index)
+            pocet += 1
             continue
+
+    slovnik["positions"] = seznam_indexu
+    slovnik["count"] = pocet
 
     return slovnik
 
+
+
+def binary_search(prohledavany_seznam, hledane_cislo):
+
+    index_pul = 0
+
+    while True:
+
+        index_middle = int((len(prohledavany_seznam) / 2) -1)
+        middle = prohledavany_seznam[index_middle]
+
+        if hledane_cislo == middle:
+            return index_middle
+
+        if hledane_cislo > middle:
+            prohledavany_seznam = prohledavany_seznam[index_middle:]
+            index_pul += index_middle + 1
+            continue
+
+        if hledane_cislo < middle:
+            prohledavany_seznam = prohledavany_seznam[:index_middle]
+
+            continue
+
+    return None
 
 
 
@@ -57,7 +86,7 @@ def main():
 
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
-    slovnik = linear_search(prohleda, hleda)
+    slovnik = linear_search(sequential_data, 2)
     print(slovnik)
 
 
